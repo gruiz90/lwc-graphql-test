@@ -1,0 +1,49 @@
+<template>
+  <div class="slds-m-top_medium slds-m-bottom_x-large">
+    <h2 class="slds-text-heading_medium slds-m-bottom_medium">
+      Get the Weather Data for any City!
+    </h2>
+
+    <div class="slds-p-around_medium lgc-bg">
+      <lightning-input
+        type="text"
+        label="City Name"
+        placeholder="type here..."
+        value={cityName}
+        onchange={handleChange}
+      ></lightning-input>
+    </div>
+
+    <!-- Brand variant: Identifies the primary action in a group of buttons -->
+    <lightning-button
+      variant="brand"
+      label="Search"
+      title="Primary action"
+      onclick={fetchWeatherData}
+      class="slds-m-left_x-small"
+    ></lightning-button>
+  </div>
+
+  <template if:true={existsData}>
+    <lightning-card title={weatherData.name}>
+      <p class="slds-p-horizontal_small">Country: {weatherData.country}</p>
+      <p class="slds-p-horizontal_small">Coord: Lon -> {weatherData.coord.lon}, Lat -> {weatherData.coord.lat}</p>
+      <h3>Summary:</h3>
+      <p class="slds-p-horizontal_small">{weatherData.weather.summary.title}</p>
+      <p class="slds-p-horizontal_small">{weatherData.weather.summary.description}</p>
+      <h3>Temperature:</h3>
+      <p class="slds-p-horizontal_small">{weatherData.weather.temperature.actual}</p>
+      <p class="slds-p-horizontal_small">{weatherData.weather.temperature.feelsLike}</p>
+      <p class="slds-p-horizontal_small">{weatherData.weather.temperature.min}</p>
+      <p class="slds-p-horizontal_small">{weatherData.weather.temperature.max}</p>
+      <h3>Wind:</h3>
+      <p class="slds-p-horizontal_small">{weatherData.weather.wind.speed}</p>
+      <p class="slds-p-horizontal_small">{weatherData.weather.wind.deg}</p>
+      <h3>Clouds:</h3>
+      <p class="slds-p-horizontal_small">{weatherData.weather.clouds.all}</p>
+      <p class="slds-p-horizontal_small">{weatherData.weather.clouds.visibility}</p>
+      <p class="slds-p-horizontal_small">{weatherData.weather.clouds.humidity}</p>
+      <p class="slds-p-horizontal_small">Timestampt: {weatherData.weather.timestamp}</p>
+    </lightning-card>
+  </template>
+</template>
