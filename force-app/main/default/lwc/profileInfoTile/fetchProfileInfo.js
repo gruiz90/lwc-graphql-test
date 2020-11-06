@@ -15,7 +15,7 @@ const query = `
 
 const TOKEN = "SECRET_TOKEN";
 
-export default function fetchProfileInfo() {
+export default async function fetchProfileInfo() {
   const graphql = JSON.stringify({
     graphql: query,
     variables: {}
@@ -31,18 +31,13 @@ export default function fetchProfileInfo() {
     redirect: "follow"
   };
 
-  // try {
-  //     const response = await fetch("https://api.philanthropycloud.com.qa3.makanaplatform.com/graphql", requestOptions);
-  //     if (response.ok) {
-  //         return response.json
-  //     }
-  // } catch (error) {
-  //     console.log('error', error)
-  // }
-  return fetch(
-    "https://api.philanthropycloud.com.qa3.makanaplatform.com/graphql",
-    requestOptions
-  )
-    .then((response) => response.json())
-    .catch((error) => console.log("error", error));
+  try {
+    const response = await fetch(
+      "https://api.philanthropycloud.com.qa3.makanaplatform.com/graphql",
+      requestOptions
+    );
+    return await response.json();
+  } catch (error) {
+    return console.log("error", error);
+  }
 }
