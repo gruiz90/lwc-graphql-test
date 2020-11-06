@@ -3,7 +3,7 @@ const query = `
         me {
             person {
                 id
-                firstName            
+                firstName
                 lastName
                 jobTitle
                 avatar
