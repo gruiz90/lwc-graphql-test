@@ -13,7 +13,7 @@ export default class ProfileInfoTile extends LightningElement {
     const response = await fetchProfileInfo();
     if (response.data) {
       this.profile = {
-        name: `${response.data.me.person.firstName} ${response.data.me.person.firstName}`,
+        name: `${response.data.me.person.firstName} ${response.data.me.person.lastName}`,
         jobTitle: response.data.me.person.jobTitle,
         avatar: response.data.me.person.avatar
       };
