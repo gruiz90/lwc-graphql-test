@@ -17,7 +17,7 @@ const TOKEN = "SECRET_TOKEN";
 
 export default async function fetchProfileInfo() {
   const graphql = JSON.stringify({
-    graphql: query,
+    query: query,
     variables: {}
   });
 
@@ -36,6 +36,7 @@ export default async function fetchProfileInfo() {
       "https://api.philanthropycloud.com.qa3.makanaplatform.com/graphql",
       requestOptions
     );
+    console.log("response: ", response);
     return await response.json();
   } catch (error) {
     return console.log("error", error);
